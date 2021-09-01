@@ -9,18 +9,15 @@ output:
     fig_width: 5
 ---
 
-
 ```{r load-packages, warning = FALSE, message = FALSE}
 library(tidyverse)
 library(viridis)
 ```
 
-We will continue using data about characters in the *Star Wars* movie franchise. 
-
 ```{r load-data, warning = FALSE, message = FALSE}
 starwars <- read_csv("data/starwars.csv")
 ```
-
+We will continue using data about `r nrow(starwars)` characters in the *Star Wars* movie franchise. 
 
 ## Step 1
 
@@ -30,14 +27,15 @@ Fill in the code below to create a histogram to visualize the distribution of `h
 ```{r height-hist, eval = FALSE}
 ggplot(data = ___, mapping = aes(x = ___)) +
   geom_histogram() + 
-  labs(title = "_____")
+  labs(x = "______", 
+       title = "_____")
 ```
 
 - What is the shape of the distribution? 
 
 ## Step 2
 
-We can use the following code to calculate summary statistics fo the distribution of height. We'll talk more about this syntax next week. 
+We can use the following code to calculate summary statistics for the distribution of height. We'll talk more about this code next week. 
 
 ```{r height-summary}
 starwars %>%
@@ -46,13 +44,13 @@ starwars %>%
             sd_height = sd(height), iqr_height = IQR(height))
 ```
 
-- Which measure is best to describe the center of the distribution - mean or median? 
-- Which measure is best to describe the spread of the - standard deviation or IQR?
+- Which measure is best to describe the center of the distribution - mean or median? Briefly explain. 
+- Which measure is best to describe the spread of the distribution - standard deviation or IQR? Briefly explain. 
 
 
 ## Step 3
 
-Now let's consider the distribution of height for each category of hair color. Modify the code from Step 1 to create separate histograms with the color of each filled in based on the `hair_color`. 
+*Do heights of characters differ by hair color?* To answer this question, let's visualize the distribution of height for each category of hair color. Modify the code from Step 1 to fill in the color of the histogram based on hair color. 
 
 ```{r height-hair-hist}
 # add code here
@@ -61,7 +59,7 @@ Now let's consider the distribution of height for each category of hair color. M
 
 ## Step 4
 
-Complete the code below to create side-by-side box plots to visualize the relationship between height and hair color.  **Once you have modified the code, remove the option `eval = FALSE` from the code chunk header.**
+Complete the code below to create side-by-side box plots to visualize the relationship between height and hair color. **Once you have modified the code, remove the option `eval = FALSE` from the code chunk header.**
 
 ```{r height-hair-box, eval = FALSE}
 # Add code here
@@ -78,11 +76,11 @@ ggplot(data = starwars, mapping = aes(x = _____, y = _____ )) +
 
 ## Step 6
 
-Finally, let's examine the relationship between hair and eye color. To do so, we'll use a segmented bar plot to visualize the distribution of eye color for each level of hair color. Fill in the code below to make the segmented bar plot. **Once you have modified the code, remove the option `eval = FALSE` from the code chunk header.**
+Finally, let's examine the relationship between hair color and eye color. To do so, we'll use a segmented bar plot to visualize the distribution of eye color for each category of hair color. Fill in the code below to make the segmented bar plot. **Once you have modified the code, remove the option `eval = FALSE` from the code chunk header.**
 
 
 ```{r eye-hair-color, eval = FALSE}
-ggplot(data = starwars, mapping = aes(x = _____, fill = ______)) +
+ggplot(data = starwars, mapping = aes(x = _____, fill = _____)) +
   geom_bar(position = "fill") +
   labs(x = "_______", 
        fill = "________", 
@@ -91,7 +89,7 @@ ggplot(data = starwars, mapping = aes(x = _____, fill = ______)) +
   scale_fill_viridis(discrete = TRUE) #apply viridis color palette
 ```
 
-Note that we have used the `scale_fill_viridis` function from the **viridis** R package to apply the viridis color palette. This color palette makes the plots more accessible and more easily readable if printed in gray scale. [Click here](https://cran.r-project.org/web/packages/viridis/vignettes/intro-to-viridis.html) to read more about the viridis color palette. 
+Note that we have used the `scale_fill_viridis` function from the **viridis** R package to apply the viridis color palette. This color palette makes the plots more accessible and more easily readable if printed in gray scale. Therefore, this and similar palettes are often preferable to the default palettes in **ggplot2**. [Click here](https://cran.r-project.org/web/packages/viridis/vignettes/intro-to-viridis.html) to read more about the viridis color palette. 
 
 ## Step 7 
 
