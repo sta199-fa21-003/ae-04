@@ -17,6 +17,9 @@ library(viridis)
 ```{r load-data, warning = FALSE, message = FALSE}
 starwars <- read_csv("data/starwars.csv")
 ```
+
+
+
 We will continue using data about `r nrow(starwars)` characters in the *Star Wars* movie franchise. 
 
 ## Step 1
@@ -25,7 +28,7 @@ Fill in the code below to create a histogram to visualize the distribution of `h
 
 
 ```{r height-hist, eval = FALSE}
-ggplot(data = ___, mapping = aes(x = ___)) +
+ggplot(data = ___, mapping = aes(x = ___)) + 
   geom_histogram() + 
   labs(x = "______", 
        title = "_____")
@@ -39,7 +42,7 @@ We can use the following code to calculate summary statistics for the distributi
 
 ```{r height-summary}
 starwars %>%
-  filter(!is.na(height)) %>% #remove observations with missing heights 
+  filter(!is.na(height)) %>% 
   summarise(mean_height = mean(height), med_height = median(height), 
             sd_height = sd(height), iqr_height = IQR(height))
 ```
