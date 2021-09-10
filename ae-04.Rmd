@@ -1,13 +1,15 @@
 ---
 title: "AE 04: Data visualization, Part 2"
 subtitle: "Visualizing Star Wars"
-author: "[INSERT YOUR NAME]"
-date: "`r Sys.Date()`"
+author: "Solutions"
+date: "09.01.21"
 output: 
   pdf_document:
     fig_height: 3
     fig_width: 5
 ---
+
+
 
 ```{r load-packages, warning = FALSE, message = FALSE}
 library(tidyverse)
@@ -18,8 +20,9 @@ library(viridis)
 starwars <- read_csv("data/starwars.csv")
 ```
 
-
-
+```{r}
+glimpse(starwars)
+```
 We will continue using data about `r nrow(starwars)` characters in the *Star Wars* movie franchise. 
 
 ## Step 1
@@ -27,14 +30,18 @@ We will continue using data about `r nrow(starwars)` characters in the *Star War
 Fill in the code below to create a histogram to visualize the distribution of `height`. **Once you have modified the code, remove the option `eval = FALSE` from the code chunk header.**
 
 
-```{r height-hist, eval = FALSE}
-ggplot(data = ___, mapping = aes(x = ___)) + 
+```{r height-hist}
+ggplot(data = starwars, mapping = aes(x = height)) + 
   geom_histogram() + 
-  labs(x = "______", 
-       title = "_____")
+  labs(x = "Height in cm", 
+       title = "Distribution of the height for Star Wars characters")
 ```
 
+
+
 - What is the shape of the distribution? 
+
+The shape of the distribution is unimodal and left-skewed.
 
 ## Step 2
 
@@ -48,7 +55,12 @@ starwars %>%
 ```
 
 - Which measure is best to describe the center of the distribution - mean or median? Briefly explain. 
+
+The median is the best measure to describe the center, because the distribution is left-skewed. 
+
 - Which measure is best to describe the spread of the distribution - standard deviation or IQR? Briefly explain. 
+
+The IQR is the best measure to describe the spread, because the distribution is left-skewed.
 
 
 ## Step 3
@@ -56,17 +68,29 @@ starwars %>%
 *Do heights of characters differ by hair color?* To answer this question, let's visualize the distribution of height for each category of hair color. Modify the code from Step 1 to fill in the color of the histogram based on hair color. 
 
 ```{r height-hair-hist}
-# add code here
+ggplot(data = starwars, mapping = aes(x = height, fill = hair_color)) + 
+  geom_histogram(alpha = 0.5) + 
+  labs(x = "Height in cm", 
+       title = "Distribution of the height for Star Wars characters", 
+       subtitle = "by Hair Color")
+```
 
+
+```{r height-hair-density}
+ggplot(data = starwars, mapping = aes(x = height, fill = hair_color)) + 
+  geom_density(alpha = 0.5) + 
+  labs(x = "Height in cm", 
+       title = "Distribution of the height for Star Wars characters", 
+       subtitle = "by Hair Color")
 ```
 
 ## Step 4
 
 Complete the code below to create side-by-side box plots to visualize the relationship between height and hair color. **Once you have modified the code, remove the option `eval = FALSE` from the code chunk header.**
 
-```{r height-hair-box, eval = FALSE}
+```{r height-hair-box}
 # Add code here
-ggplot(data = starwars, mapping = aes(x = _____, y = _____ )) +
+ggplot(data = starwars, mapping = aes(x = hair_color, y = height )) +
   geom_boxplot() 
 ```
 
@@ -77,18 +101,20 @@ ggplot(data = starwars, mapping = aes(x = _____, y = _____ )) +
 - What feature(s) are apparent in the histograms that aren't apparent in the side-by-side box plots? 
 - What feature(s) are apparent in the side-by-side box plots that aren't apparent in the histograms? 
 
+*Answers will vary*
+
 ## Step 6
 
 Finally, let's examine the relationship between hair color and eye color. To do so, we'll use a segmented bar plot to visualize the distribution of eye color for each category of hair color. Fill in the code below to make the segmented bar plot. **Once you have modified the code, remove the option `eval = FALSE` from the code chunk header.**
 
 
 ```{r eye-hair-color, eval = FALSE}
-ggplot(data = starwars, mapping = aes(x = _____, fill = _____)) +
+ggplot(data = starwars, mapping = aes(x = hair_color, fill = eye_color)) +
   geom_bar(position = "fill") +
-  labs(x = "_______", 
-       fill = "________", 
-       title = "_______",
-       subtitle = "________") +
+  labs(x = "Hair Color", 
+       fill = "Eye Color", 
+       title = "Distribution of eye color based on hair color",
+       subtitle = "for Star Wars characters") +
   scale_fill_viridis(discrete = TRUE) #apply viridis color palette
 ```
 
@@ -97,6 +123,8 @@ Note that we have used the `scale_fill_viridis` function from the **viridis** R 
 ## Step 7 
 
 What are 2 observations about the relationship between hair and eye color based on the plot above?
+
+*Answers will vary*
 
 ## Knit, commit, and push your changes to GitHub!
 
