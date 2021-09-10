@@ -10,7 +10,6 @@ output:
 ---
 
 
-
 ```{r load-packages, warning = FALSE, message = FALSE}
 library(tidyverse)
 library(viridis)
