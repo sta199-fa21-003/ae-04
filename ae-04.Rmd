@@ -23,7 +23,12 @@ starwars <- read_csv("data/starwars.csv")
 ```{r}
 glimpse(starwars)
 ```
-We will continue using data about `r nrow(starwars)` characters in the *Star Wars* movie franchise. 
+
+We will continue using data about `r nrow(starwars)` characters in the *Star Wars* movie franchise. This analysis includes the following variables: 
+
+- `eye_color`: one of black, blue, brown, other, yellow
+- `hair_color`: one of black, brown/auburn, none, other
+- `height`: Height in centimeters (cm)
 
 ## Step 1
 
